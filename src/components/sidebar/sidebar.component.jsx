@@ -40,11 +40,8 @@ const Sidebar = () => {
 		getCountriesNames();
 	}, []);
 
-	console.log(countriesNames);
-
-	const API_KEY = 'f18e36d1a9b042d2b575daf90ade4ce7';
 	const countriesCodeUpperCase = countriesFromNewsApiUpperCase;
-	console.log(countriesCodeUpperCase[0]);
+
 	return (
 		<ul className='list-container'>
 			{countriesNames &&

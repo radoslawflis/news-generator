@@ -59,12 +59,6 @@ export const countriesFromNewsApiUpperCase = countriesFromNewsApi.map(
 	(country) => country.toLocaleUpperCase()
 );
 
-// export const countriesNames = countriesFromApi.map((countryCode)=>`https://restcountries.com/v3.1/alpha/${countryCode}` ) take out only name.common
-
-// https://restcountries.com/v3.1/alpha/de Example
-
-const urlRestCountries = 'https://restcountries.com/v3.1/all';
-
 // export const restCountriesApiNames = countriesFromNewsApi.map((countryCode) => {
 // 	return fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`)
 // 		.then((response) => response.json())
