@@ -1,46 +1,72 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import {
-	countriesFromNewsApi,
-	countriesFromNewsApiUpperCase,
+	countriesCodeFromNewsApi,
+	countriesCodeFromNewsApiUpperCase,
+	getCountriesNames,
 } from '../../data/data';
+
+import { setCurrentCountryArticles } from '../../store/country/country.slice';
 
 import './sidebar.styles.scss';
 
 const Sidebar = () => {
+	const dispatch = useDispatch();
 	const [countriesNames, setCountriesNames] = useState('');
+	const [countryCode, setCountryCode] = useState('us');
 
 	useEffect(() => {
-		const fetchCountryName = async (code) => {
+		const fetchCountriesNames = async () => {
 			try {
-				const response = await fetch(
-					`https://restcountries.com/v3.1/alpha/${code}`
-				);
-				const data = await response.json();
-				return data[0].name.common;
-			} catch (error) {
-				console.log(error);
-				return null;
-			}
-		};
-
-		const getCountriesNames = async () => {
-			try {
-				const restCountriesApiNames = await Promise.all(
-					countriesFromNewsApi.map((countryCode) =>
-						fetchCountryName(countryCode)
-					)
-				);
-
-				setCountriesNames(restCountriesApiNames);
+				const names = await getCountriesNames();
+				setCountriesNames(names);
 			} catch (error) {
 				console.log(error);
 			}
 		};
-
-		getCountriesNames();
+		fetchCountriesNames();
 	}, []);
 
-	const countriesCodeUpperCase = countriesFromNewsApiUpperCase;
+	// const sortingNamesAndCode = (countries, codes) => {
+	// 	const combinedArray = countries.map((country, index) => {
+	// 		const code = codes[index];
+	// 		return `${country}&${code}`;
+	// 	});
+	// 	combinedArray.sort();
+	// 	const sortedNames = combinedArray.map((str) => str.split('&')[0]);
+	// 	const sortedCode = combinedArray.map((str) => str.split('&')[1]);
+	// 	return sortedNames, sortedCode;
+	// };
+
+	// console.log(sortingNamesAndCode(countriesNames, countriesCodeFromNewsApi));
+
+	const countriesCodeUpperCase = countriesCodeFromNewsApiUpperCase;
+
+	const API_KEY = 'f18e36d1a9b042d2b575daf90ade4ce7';
+
+	// const urlFetchNews = `https://newsapi.org/v2/top-headlines?country=de&pagesize=100&apiKey=${API_KEY}`;
+
+	const handleFetchingArticles = (code) => {
+		setCountryCode(code);
+	};
+	// console.log(countryCode);
+
+	useEffect(() => {
+		const fetchArticles = async () => {
+			try {
+				const response = await fetch(
+					`https://newsapi.org/v2/top-headlines?country=${countryCode}&pagesize=20&apiKey=${API_KEY}`
+				);
+				const data = await response.json();
+				console.log(data);
+				dispatch(setCurrentCountryArticles(data.articles));
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		fetchArticles();
+	}, [countryCode, dispatch]);
 
 	return (
 		<ul className='list-container'>
@@ -52,7 +78,16 @@ const Sidebar = () => {
 								key={country}
 								src={`https://www.countryflagicons.com/SHINY/64/${countriesCodeUpperCase[index]}.png`}
 							></img>
-							<h3 className='country-name'>{country}</h3>
+							<h3
+								className='country-name'
+								onClick={() =>
+									handleFetchingArticles(
+										countriesCodeUpperCase[index]
+									)
+								}
+							>
+								{country}
+							</h3>
 						</div>
 					</li>
 				))}

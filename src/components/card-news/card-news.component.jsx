@@ -1,5 +1,7 @@
+import './card-news.styles.scss';
+
 const CardNews = ({ article }) => {
-	const { title, source, publishedAt } = article;
+	const { title, source, publishedAt, urlToImage } = article;
 
 	const getDateDay = (date) => {
 		const publishedDate = date.split('T')[0];
@@ -8,6 +10,9 @@ const CardNews = ({ article }) => {
 
 	return (
 		<div className='card-news-container'>
+			{/* {urlToImage && (
+				<img className='img-news' src={urlToImage} alt={title} />
+			)} */}
 			<div>
 				<h5>{title}</h5>
 			</div>

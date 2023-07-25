@@ -1,4 +1,4 @@
-export const countriesFromNewsApi = [
+export const countriesCodeFromNewsApi = [
 	'ae',
 	'ar',
 	'at',
@@ -55,9 +55,40 @@ export const countriesFromNewsApi = [
 	'za',
 ];
 
-export const countriesFromNewsApiUpperCase = countriesFromNewsApi.map(
+export const countriesCodeFromNewsApiUpperCase = countriesCodeFromNewsApi.map(
 	(country) => country.toLocaleUpperCase()
 );
+
+const fetchCountryName = async (code) => {
+	try {
+		const response = await fetch(
+			`https://restcountries.com/v3.1/alpha/${code}`
+		);
+		const data = await response.json();
+
+		return data[0].name.common;
+	} catch (error) {
+		console.log(error);
+		return null;
+	}
+};
+
+export const getCountriesNames = async () => {
+	try {
+		const restCountriesApiNames = await Promise.all(
+			countriesCodeFromNewsApi.map((countryCode) =>
+				fetchCountryName(countryCode)
+			)
+		);
+
+		return restCountriesApiNames;
+	} catch (error) {
+		console.log(error);
+		return null;
+	}
+};
+// const countryNames = await getCountriesNames();
+// console.log(countryNames);
 
 // export const restCountriesApiNames = countriesFromNewsApi.map((countryCode) => {
 // 	return fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`)
