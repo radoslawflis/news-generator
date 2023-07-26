@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import './footer.styles.scss';
+import { selectTotalArticles } from '../../store/country/country.selector';
 
 const Footer = () => {
 	const [time, setTime] = useState(new Date());
+	// const articlesCount = useSelector(selectTotalArticles);
 
 	useEffect(() => {
-		setInterval(() => setTime(new Date()), 5000);
+		setInterval(() => setTime(new Date()), 1000);
 	}, []);
 
 	return (

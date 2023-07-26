@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { Link } from 'react-router-dom';
+
 import {
 	countriesCodeFromNewsApi,
 	countriesCodeFromNewsApiUpperCase,
@@ -49,6 +51,7 @@ const Sidebar = () => {
 
 	const handleFetchingArticles = (code) => {
 		setCountryCode(code);
+		console.log('clicking');
 	};
 	// console.log(countryCode);
 
@@ -86,7 +89,9 @@ const Sidebar = () => {
 									)
 								}
 							>
-								{country}
+								<Link to={`/country/${country}`}>
+									{country}
+								</Link>
 							</h3>
 						</div>
 					</li>
