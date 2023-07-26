@@ -4,11 +4,16 @@ import Header from './components/header/header.component';
 import Sidebar from './components/sidebar/sidebar.component';
 
 import Footer from './components/footer/footer.component';
-import ContentPreview from './components/content-preview/content-preview.component';
-import ContentPreview2 from './components/content-preview/content-preview2.component';
+import TilesContent from './components/tiles-content/tiles-content.component';
+import ListContent from './components/list-content/list-content.component';
+import { useSelector } from 'react-redux';
+import { selectViewSetting } from './store/view-setting/view-setting.selector';
+
 import './App.styles.scss';
 
 function App() {
+	const toggleView = useSelector(selectViewSetting);
+
 	return (
 		<>
 			<Header />
@@ -17,9 +22,11 @@ function App() {
 				<Routes>
 					<Route
 						path='country/:country'
-						element={<ContentPreview />}
+						element={
+							toggleView ? <TilesContent /> : <ListContent />
+						}
 					/>
-					<Route path='checkout' element={<ContentPreview2 />} />
+					<Route path='checkout' element={<ListContent />} />
 				</Routes>
 				{/* <ContentPreview /> */}
 			</div>

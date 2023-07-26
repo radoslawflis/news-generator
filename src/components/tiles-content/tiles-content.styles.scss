@@ -1,4 +1,4 @@
-.content-preview-container {
+.tiles-content-container {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
