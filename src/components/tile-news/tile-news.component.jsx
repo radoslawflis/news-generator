@@ -1,6 +1,9 @@
+import { useState } from 'react';
+import PopUp from '../pop-up/pop-up.component';
 import './tile-news.styles.scss';
 
 const TileNews = ({ article }) => {
+	const [openPopUp, setOpenPopUp] = useState(false);
 	const { title, source, publishedAt, urlToImage } = article;
 
 	const getDateDay = (date) => {
@@ -9,7 +12,16 @@ const TileNews = ({ article }) => {
 	};
 
 	return (
-		<div className='tile-news-container'>
+		<div
+			className='tile-news-container'
+			onClick={() => setOpenPopUp(!openPopUp)}
+		>
+			{/* <button >Modal</button> */}
+			<PopUp
+				open={openPopUp}
+				onClose={() => setOpenPopUp(false)}
+				article={article}
+			/>
 			{urlToImage && (
 				<img className='img-news' src={urlToImage} alt={title} />
 			)}
