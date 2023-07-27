@@ -1,14 +1,12 @@
-import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import CardNews from '../card-news/card-news.component';
+import TileNews from '../../components/tile-news/tile-news.component';
 
 import {
 	// selectCountryArticles,
 	selectCountryArticlesReducer,
-	selectTotalArticles,
 } from '../../store/country/country.selector';
 
-import './content-preview.styles.scss';
+import './tiles-content.styles.scss';
 
 const API_KEY = 'f18e36d1a9b042d2b575daf90ade4ce7';
 
@@ -16,7 +14,7 @@ const urlFetchNews = `https://newsapi.org/v2/top-headlines?country=de&pagesize=1
 // const urlFetchNews =
 // 	'https://newsapi.org/v2/everything?q=bitcoin&apiKey=f18e36d1a9b042d2b575daf90ade4ce7';
 
-const ContentPreview = () => {
+const TilesContent = () => {
 	// const [newsApi, setNewsApi] = useState(null);
 	const articles = useSelector(selectCountryArticlesReducer);
 
@@ -34,14 +32,13 @@ const ContentPreview = () => {
 	// }, []);
 
 	return (
-		<div className='content-preview-container'>
-			<div>COMPONEN22222222222222222222222222222222222</div>
+		<div className='tiles-content-container'>
 			{articles &&
 				articles.map((article) => (
-					<CardNews key={article.title} article={article} />
+					<TileNews key={article.title} article={article} />
 				))}
 		</div>
 	);
 };
 
-export default ContentPreview;
+export default TilesContent;

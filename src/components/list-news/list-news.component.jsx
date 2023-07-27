@@ -1,6 +1,6 @@
-import './card-news.styles.scss';
+import './list-news.styles.scss';
 
-const CardNews = ({ article }) => {
+const ListNews = ({ article }) => {
 	const { title, source, publishedAt, urlToImage } = article;
 
 	const getDateDay = (date) => {
@@ -9,10 +9,7 @@ const CardNews = ({ article }) => {
 	};
 
 	return (
-		<div className='card-news-container'>
-			{/* {urlToImage && (
-				<img className='img-news' src={urlToImage} alt={title} />
-			)} */}
+		<div className='tile-news-container'>
 			<div>
 				<h5>{title}</h5>
 			</div>
@@ -22,4 +19,4 @@ const CardNews = ({ article }) => {
 	);
 };
 
-export default CardNews;
+export default ListNews;
