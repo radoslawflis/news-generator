@@ -10,7 +10,19 @@ const NotFound = () => {
 			navigate('/');
 		}, 2000);
 	}, []);
-	return <p>Page Not Found. Redirecting to the home page</p>;
+	return (
+		<div className='home-container'>
+			<div className='home-frame-container'>
+				<div className='home-content-container'>
+					<div>
+						<span className='home-txt'>
+							Page Not Found. Redirecting to the home page
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default NotFound;
