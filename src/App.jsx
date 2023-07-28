@@ -1,9 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 
-import Header from './components/header/header.component';
-import Sidebar from './components/sidebar/sidebar.component';
-
-import Footer from './components/footer/footer.component';
 import TilesContent from './routes/tiles-content/tiles-content.component';
 import ListContent from './routes/list-content/list-content.component';
 import NotFound from './routes/not-found/not-found-component';

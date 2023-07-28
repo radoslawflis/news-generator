@@ -2,7 +2,8 @@ import './pop-up.styles.scss';
 
 const PopUp = ({ open, onClose, article }) => {
 	if (!open) return null;
-	const { author, content, url } = article;
+	const { source, content, url, title } = article;
+
 	return (
 		<div onClick={onClose} className='overlay'>
 			<div
@@ -11,10 +12,10 @@ const PopUp = ({ open, onClose, article }) => {
 				}}
 				className='popup-container'
 			>
-				<p>POPUP DOES IT WORK?</p>
+				<h5>{title}</h5>
+				<p>Author: {source.url}</p>
 				<p>{content}</p>
-				<p>{author}</p>
-				<p>{url}</p>
+				<p>Source: {url}</p>
 				<button onClick={onClose} className='btnClose'>
 					Close
 				</button>

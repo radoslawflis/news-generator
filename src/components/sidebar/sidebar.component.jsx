@@ -30,40 +30,30 @@ const Sidebar = () => {
 		fetchCountriesNames();
 	}, []);
 
-	// const sortingNamesAndCode = (countries, codes) => {
-	// 	const combinedArray = countries.map((country, index) => {
-	// 		const code = codes[index];
-	// 		return `${country}&${code}`;
-	// 	});
-	// 	combinedArray.sort();
-	// 	const sortedNames = combinedArray.map((str) => str.split('&')[0]);
-	// 	const sortedCode = combinedArray.map((str) => str.split('&')[1]);
-	// 	return sortedNames, sortedCode;
-	// };
-
 	// console.log(sortingNamesAndCode(countriesNames, countriesCodeFromNewsApi));
 
 	const countriesCodeUpperCase = countriesCodeFromNewsApiUpperCase;
+	const countriesCodeLowerCase = countriesCodeFromNewsApi;
 
-	const API_KEY = 'f18e36d1a9b042d2b575daf90ade4ce7';
+	// const API_KEY = 'f18e36d1a9b042d2b575daf90ade4ce7';
 
 	// const urlFetchNews = `https://newsapi.org/v2/top-headlines?country=de&pagesize=100&apiKey=${API_KEY}`;
 
 	const handleFetchingArticles = (code) => {
 		setCountryCode(code);
-		console.log('clicking');
 	};
-	// console.log(countryCode);
+
+	const API_KEY = '07103288e6b1b6bb6fd0a2c6ecc13899';
+	const gnewsAPI = `https://gnews.io/api/v4/top-headlines?category=general&country=${countryCode}&apikey=${API_KEY}`;
 
 	useEffect(() => {
 		const fetchArticles = async () => {
 			try {
-				const response = await fetch(
-					`https://newsapi.org/v2/top-headlines?country=${countryCode}&pagesize=20&apiKey=${API_KEY}`
-				);
+				const response = await fetch(gnewsAPI);
 				const data = await response.json();
-				console.log(data);
+
 				dispatch(setCurrentCountryArticles(data.articles));
+				console.log(data.articles);
 			} catch (error) {
 				console.log(error);
 			}
@@ -72,31 +62,35 @@ const Sidebar = () => {
 	}, [countryCode, dispatch]);
 
 	return (
-		<ul className='list-container'>
-			{countriesNames &&
-				countriesNames.map((country, index) => (
-					<li key={country}>
-						<div className='flag-container'>
-							<img
-								key={country}
-								src={`https://www.countryflagicons.com/SHINY/64/${countriesCodeUpperCase[index]}.png`}
-							></img>
-							<h3
-								className='country-name'
-								onClick={() =>
-									handleFetchingArticles(
-										countriesCodeUpperCase[index]
-									)
-								}
-							>
-								<Link to={`/country/${country}`}>
-									{country}
-								</Link>
-							</h3>
-						</div>
-					</li>
-				))}
-		</ul>
+		<>
+			<ul className='sidebar-list-container'>
+				<h3>Choose country:</h3>
+				<hr />
+				{countriesNames &&
+					countriesNames.map((country, index) => (
+						<li key={country}>
+							<div className='flag-container'>
+								<img
+									key={country}
+									src={`https://www.countryflagicons.com/SHINY/64/${countriesCodeUpperCase[index]}.png`}
+								></img>
+								<h3
+									className='country-name'
+									onClick={() =>
+										handleFetchingArticles(
+											countriesCodeLowerCase[index]
+										)
+									}
+								>
+									<Link to={`/country/${country}`}>
+										{country}
+									</Link>
+								</h3>
+							</div>
+						</li>
+					))}
+			</ul>
+		</>
 	);
 };
 

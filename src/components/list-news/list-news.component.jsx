@@ -5,16 +5,18 @@ import './list-news.styles.scss';
 
 const ListNews = ({ article }) => {
 	const [openPopUp, setOpenPopUp] = useState(false);
-	const { title, source, publishedAt, urlToImage } = article;
+	const { title, source, publishedAt } = article;
 
 	const getDateDay = (date) => {
 		const publishedDate = date.split('T')[0];
-		return publishedDate;
+		const publishedTime = date.split('T')[1].split('Z')[0];
+		return { publishedDate, publishedTime };
 	};
+	const { publishedDate, publishedTime } = getDateDay(publishedAt);
 
 	return (
 		<div
-			className='tile-news-container'
+			className='list-news-container'
 			onClick={() => setOpenPopUp(!openPopUp)}
 		>
 			<PopUp
@@ -22,11 +24,19 @@ const ListNews = ({ article }) => {
 				onClose={() => setOpenPopUp(false)}
 				article={article}
 			/>
-			<div>
-				<h5>{title}</h5>
+			<div className='list-head'>
+				<span>{source?.name}</span>
+				<span>
+					{publishedDate} {publishedTime}
+				</span>
 			</div>
-			<div>{source?.name}</div>
-			<div>{getDateDay(publishedAt)}</div>
+			<div className='list-container'>
+				<span className='title-txt'>{title}</span>
+			</div>
+
+			<div className='list-button-container'>
+				<button>Learn more</button>
+			</div>
 		</div>
 	);
 };

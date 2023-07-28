@@ -4,32 +4,42 @@ import './tile-news.styles.scss';
 
 const TileNews = ({ article }) => {
 	const [openPopUp, setOpenPopUp] = useState(false);
-	const { title, source, publishedAt, urlToImage } = article;
+	const { title, source, publishedAt, image } = article;
 
 	const getDateDay = (date) => {
 		const publishedDate = date.split('T')[0];
-		return publishedDate;
+		const publishedTime = date.split('T')[1].split('Z')[0];
+		return { publishedDate, publishedTime };
 	};
+	const { publishedDate, publishedTime } = getDateDay(publishedAt);
 
 	return (
 		<div
 			className='tile-news-container'
 			onClick={() => setOpenPopUp(!openPopUp)}
 		>
-			{/* <button >Modal</button> */}
 			<PopUp
 				open={openPopUp}
 				onClose={() => setOpenPopUp(false)}
 				article={article}
 			/>
-			{urlToImage && (
-				<img className='img-news' src={urlToImage} alt={title} />
-			)}
 			<div>
-				<h5>{title}</h5>
+				{image && (
+					<img className='tile-img-news' src={image} alt={title} />
+				)}
+				<div className='tile-date'>
+					<span>{source?.name}</span>
+					<span>
+						{publishedDate} {publishedTime}
+					</span>
+				</div>
+				<div className='tile-title-container'>
+					<span className='title-txt'>{title}</span>
+				</div>
 			</div>
-			<div>{source?.name}</div>
-			<div>{getDateDay(publishedAt)}</div>
+			<div className='tile-button-container'>
+				<button>Learn more</button>
+			</div>
 		</div>
 	);
 };
