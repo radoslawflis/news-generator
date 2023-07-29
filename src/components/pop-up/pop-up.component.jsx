@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import './pop-up.styles.scss';
 
 const PopUp = ({ open, onClose, article }) => {
@@ -5,22 +6,25 @@ const PopUp = ({ open, onClose, article }) => {
 	const { source, content, url, title } = article;
 
 	return (
-		<div onClick={onClose} className='overlay'>
+		<>
+			<div onClick={onClose} className='popup-overlay'></div>
 			<div
 				onClick={(e) => {
 					e.stopPropagation();
 				}}
 				className='popup-container'
 			>
-				<h5>{title}</h5>
-				<p>Author: {source.url}</p>
-				<p>{content}</p>
-				<p>Source: {url}</p>
-				<button onClick={onClose} className='btnClose'>
-					Close
-				</button>
+				<span className='popup-title'>{title}</span>
+				<span className='popup-content'>Author: {source.url}</span>
+				<span className='popup-content'>{content}</span>
+				<span className='popup-content'>Source: {url}</span>
+				<div className='button-popup-container'>
+					<button onClick={onClose} className='btnClose'>
+						Close
+					</button>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

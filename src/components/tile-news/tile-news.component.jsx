@@ -4,7 +4,13 @@ import './tile-news.styles.scss';
 
 const TileNews = ({ article }) => {
 	const [openPopUp, setOpenPopUp] = useState(false);
+	const [isHovered, setIsHovered] = useState(false);
+	const [imageError, setImageError] = useState(false);
 	const { title, source, publishedAt, image } = article;
+
+	const handleImageError = () => {
+		setImageError(true);
+	};
 
 	const getDateDay = (date) => {
 		const publishedDate = date.split('T')[0];
@@ -17,6 +23,9 @@ const TileNews = ({ article }) => {
 		<div
 			className='tile-news-container'
 			onClick={() => setOpenPopUp(!openPopUp)}
+			// onMouseEnter={() => setIsHovered(true)} // Set isHovered to true on mouse enter
+			// onMouseLeave={() => setIsHovered(false)} // Set isHovered to false on mouse leave
+			// style={{ transform: isHovered ? 'scale(1.1)' : 'none' }} // Apply scale transform when hovered
 		>
 			<PopUp
 				open={openPopUp}
@@ -24,9 +33,17 @@ const TileNews = ({ article }) => {
 				article={article}
 			/>
 			<div>
-				{image && (
-					<img className='tile-img-news' src={image} alt={title} />
+				{image && !imageError ? (
+					<img
+						className='tile-img-news'
+						src={image}
+						alt={title}
+						onError={handleImageError}
+					/>
+				) : (
+					<div className='tile-img-placeholder' />
 				)}
+
 				<div className='tile-date'>
 					<span>{source?.name}</span>
 					<span>

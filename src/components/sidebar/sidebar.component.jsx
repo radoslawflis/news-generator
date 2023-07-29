@@ -12,6 +12,7 @@ import {
 import { setCurrentCountryArticles } from '../../store/country/country.slice';
 
 import './sidebar.styles.scss';
+import PopUp from '../pop-up/pop-up.component';
 
 const Sidebar = () => {
 	const dispatch = useDispatch();
@@ -30,14 +31,8 @@ const Sidebar = () => {
 		fetchCountriesNames();
 	}, []);
 
-	// console.log(sortingNamesAndCode(countriesNames, countriesCodeFromNewsApi));
-
 	const countriesCodeUpperCase = countriesCodeFromNewsApiUpperCase;
 	const countriesCodeLowerCase = countriesCodeFromNewsApi;
-
-	// const API_KEY = 'f18e36d1a9b042d2b575daf90ade4ce7';
-
-	// const urlFetchNews = `https://newsapi.org/v2/top-headlines?country=de&pagesize=100&apiKey=${API_KEY}`;
 
 	const handleFetchingArticles = (code) => {
 		setCountryCode(code);
@@ -64,29 +59,29 @@ const Sidebar = () => {
 	return (
 		<>
 			<ul className='sidebar-list-container'>
-				<h3>Choose country:</h3>
+				<span className='sidebar-header'>Choose country:</span>
 				<hr />
 				{countriesNames &&
 					countriesNames.map((country, index) => (
 						<li key={country}>
-							<div className='flag-container'>
-								<img
-									key={country}
-									src={`https://www.countryflagicons.com/SHINY/64/${countriesCodeUpperCase[index]}.png`}
-								></img>
-								<h3
-									className='country-name'
-									onClick={() =>
-										handleFetchingArticles(
-											countriesCodeLowerCase[index]
-										)
-									}
-								>
-									<Link to={`/country/${country}`}>
+							<Link to={`/country/${country}`}>
+								<div className='flag-container'>
+									<img
+										key={country}
+										src={`https://www.countryflagicons.com/SHINY/64/${countriesCodeUpperCase[index]}.png`}
+									></img>
+									<span
+										className='country-name'
+										onClick={() =>
+											handleFetchingArticles(
+												countriesCodeLowerCase[index]
+											)
+										}
+									>
 										{country}
-									</Link>
-								</h3>
-							</div>
+									</span>
+								</div>
+							</Link>
 						</li>
 					))}
 			</ul>

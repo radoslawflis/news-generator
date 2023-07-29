@@ -2,17 +2,30 @@
 	list-style: none;
 	// background-color: aqua;
 	margin: 0;
-	padding: 12px;
+	padding: 24px;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px,
 		rgba(0, 0, 0, 0.04) 0px 10px 10px;
 	border-radius: 12px;
+
+	.sidebar-header {
+		font-size: 1.2rem;
+		font-weight: 600;
+	}
 }
 
 .flag-container {
 	display: flex;
 	align-items: center;
+	padding: 0 6px;
+}
+
+.flag-container:hover {
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px,
+		rgba(0, 0, 0, 0.04) 0px 10px 10px;
+	border-radius: 6px;
 }
 
 .country-name {
 	margin-left: 8px;
+	font-size: large;
 }

@@ -16,6 +16,13 @@
 		border-radius: 6px;
 	}
 
+	.tile-img-placeholder {
+		height: 180px;
+		width: 100%;
+		border-radius: 6px;
+		background-color: rgb(238, 242, 246);
+	}
+
 	.tile-title-container {
 		.title-txt {
 			font-size: large;
@@ -34,6 +41,6 @@
 	}
 }
 
-.tile-news-container:hover {
-	transform: scale(1.1);
-}
+// .tile-news-container:hover {
+// 	transform: scale(1.1);
+// }
