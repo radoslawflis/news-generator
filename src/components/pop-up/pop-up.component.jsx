@@ -1,11 +1,12 @@
-import { useEffect } from 'react';
+import ReactDom from 'react-dom';
+
 import './pop-up.styles.scss';
 
 const PopUp = ({ open, onClose, article }) => {
 	if (!open) return null;
 	const { source, content, url, title } = article;
 
-	return (
+	return ReactDom.createPortal(
 		<>
 			<div onClick={onClose} className='popup-overlay'></div>
 			<div
@@ -24,7 +25,8 @@ const PopUp = ({ open, onClose, article }) => {
 					</button>
 				</div>
 			</div>
-		</>
+		</>,
+		document.getElementById('portal')
 	);
 };
 

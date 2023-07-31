@@ -4,7 +4,6 @@ import './tile-news.styles.scss';
 
 const TileNews = ({ article }) => {
 	const [openPopUp, setOpenPopUp] = useState(false);
-	const [isHovered, setIsHovered] = useState(false);
 	const [imageError, setImageError] = useState(false);
 	const { title, source, publishedAt, image } = article;
 
@@ -23,9 +22,6 @@ const TileNews = ({ article }) => {
 		<div
 			className='tile-news-container'
 			onClick={() => setOpenPopUp(!openPopUp)}
-			// onMouseEnter={() => setIsHovered(true)} // Set isHovered to true on mouse enter
-			// onMouseLeave={() => setIsHovered(false)} // Set isHovered to false on mouse leave
-			// style={{ transform: isHovered ? 'scale(1.1)' : 'none' }} // Apply scale transform when hovered
 		>
 			<PopUp
 				open={openPopUp}
