@@ -1,19 +1,35 @@
 import { useSelector } from 'react-redux';
 import TileNews from '../../components/tile-news/tile-news.component';
 
-import { selectCountryArticlesReducer } from '../../store/country/country.selector';
+import {
+	selectCountryArticlesIsLoading,
+	selectCountryArticlesReducer,
+} from '../../store/country/country.selector';
+
+import GridLoader from 'react-spinners/GridLoader';
 
 import './tiles-content.styles.scss';
 
 const TilesContent = () => {
 	const articles = useSelector(selectCountryArticlesReducer);
+	const isLoading = useSelector(selectCountryArticlesIsLoading);
 
 	return (
 		<div className='tiles-content-container'>
-			{articles &&
+			{isLoading ? (
+				<div className='grid-loader-container'>
+					<GridLoader
+						speedMultiplier={0.6}
+						size={50}
+						color='#47688d'
+					/>
+				</div>
+			) : (
+				articles &&
 				articles.map((article) => (
 					<TileNews key={article.title} article={article} />
-				))}
+				))
+			)}
 		</div>
 	);
 };

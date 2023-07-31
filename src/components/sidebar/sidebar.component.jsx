@@ -9,15 +9,13 @@ import {
 	getCountriesNames,
 } from '../../data/data';
 
-import { setCurrentCountryArticles } from '../../store/country/country.slice';
+import { fetchArticlesByCode } from '../../store/country/country.slice';
 
 import './sidebar.styles.scss';
-import PopUp from '../pop-up/pop-up.component';
 
 const Sidebar = () => {
 	const dispatch = useDispatch();
 	const [countriesNames, setCountriesNames] = useState('');
-	const [countryCode, setCountryCode] = useState('us');
 
 	useEffect(() => {
 		const fetchCountriesNames = async () => {
@@ -35,26 +33,8 @@ const Sidebar = () => {
 	const countriesCodeLowerCase = countriesCodeFromNewsApi;
 
 	const handleFetchingArticles = (code) => {
-		setCountryCode(code);
+		dispatch(fetchArticlesByCode(code));
 	};
-
-	const API_KEY = '07103288e6b1b6bb6fd0a2c6ecc13899';
-	const gnewsAPI = `https://gnews.io/api/v4/top-headlines?category=general&country=${countryCode}&apikey=${API_KEY}`;
-
-	useEffect(() => {
-		const fetchArticles = async () => {
-			try {
-				const response = await fetch(gnewsAPI);
-				const data = await response.json();
-
-				dispatch(setCurrentCountryArticles(data.articles));
-				console.log(data.articles);
-			} catch (error) {
-				console.log(error);
-			}
-		};
-		fetchArticles();
-	}, [countryCode, dispatch]);
 
 	return (
 		<>
