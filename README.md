@@ -1,9 +1,22 @@
-# React + Vite
+# Newsify - News Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live App: WIP
 
-Currently, two official plugins are available:
+## About the project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# news-generator
+Newsify is the project presenting news from around the world from a public API GNews
+
+## Features
+
+- Fetching News from a public API to present them in 2 forms: list and tiles
+- PopUp solutions using portal in ReactJS
+
+## Technologies Used
+
+-   Front-end: HTML, SCSS, JavaScript, React, Redux, Redux Toolkit, Redux-Logger, Redux-Thunk
+
+## What I have learnt
+
+- This is a small project testing my knowledge of Redux for state management of an APP.
+- Needed to add RWD and Typescript to this project for type safety 
+
