@@ -1,0 +1,20 @@
+.tiles-content-container {
+	position: relative;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(auto-fill, minmax(350px, 1fr));
+	gap: 24px;
+	padding: 24px;
+	background-color: rgb(238, 242, 246);
+	border-radius: 12px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px,
+		rgba(0, 0, 0, 0.04) 0px 10px 10px;
+}
+
+.grid-loader-container {
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}

@@ -1,0 +1,32 @@
+.list-news-container {
+	background-color: white;
+	border-radius: 12px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px,
+		rgba(0, 0, 0, 0.04) 0px 10px 10px;
+	transition: transform 0.3s ease;
+	padding: 12px;
+	margin-bottom: 24px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 120px;
+
+	.list-container {
+		.title-txt {
+			font-size: large;
+		}
+	}
+
+	.list-head {
+		display: flex;
+		justify-content: space-between;
+	}
+	.list-button-container {
+		display: flex;
+		justify-content: flex-end;
+	}
+}
+
+.list-news-container:hover {
+	transform: scale(1.03);
+}
