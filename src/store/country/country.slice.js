@@ -13,8 +13,8 @@ export const fetchArticlesByCode = createAsyncThunk(
 		const gnewsAPI = `https://gnews.io/api/v4/top-headlines?category=general&country=${countryCode}&apikey=${API_KEY}`;
 		const response = await fetch(gnewsAPI);
 		const data = await response.json();
-		console.log(data.articles);
-		return data.articles;
+		console.log(data);
+		return data;
 	}
 );
 

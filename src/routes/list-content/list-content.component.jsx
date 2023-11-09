@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import ListNews from '../../components/list-news/list-news.component';
 
 import {
-	selectCountryArticlesReducer,
+	selectCountryArticles,
 	selectCountryArticlesIsLoading,
 } from '../../store/country/country.selector';
 
@@ -11,7 +11,7 @@ import GridLoader from 'react-spinners/GridLoader';
 import './list-content.styles.scss';
 
 const ListContent = () => {
-	const articles = useSelector(selectCountryArticlesReducer);
+	const articles = useSelector(selectCountryArticles);
 	const isLoading = useSelector(selectCountryArticlesIsLoading);
 
 	return (
