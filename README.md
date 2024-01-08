@@ -1,6 +1,6 @@
 # Newsify - News Generator
 
-Live App: WIP
+Live App: https://news-newsify.netlify.app/
 
 ## About the project
 
