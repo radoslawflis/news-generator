@@ -3,7 +3,7 @@ import TileNews from '../../components/tile-news/tile-news.component';
 
 import {
 	selectCountryArticlesIsLoading,
-	selectCountryArticlesReducer,
+	selectCountryArticles,
 } from '../../store/country/country.selector';
 
 import GridLoader from 'react-spinners/GridLoader';
@@ -11,7 +11,7 @@ import GridLoader from 'react-spinners/GridLoader';
 import './tiles-content.styles.scss';
 
 const TilesContent = () => {
-	const articles = useSelector(selectCountryArticlesReducer);
+	const articles = useSelector(selectCountryArticles);
 	const isLoading = useSelector(selectCountryArticlesIsLoading);
 
 	return (

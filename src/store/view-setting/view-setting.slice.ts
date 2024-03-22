@@ -8,7 +8,7 @@ export const viewSettingSlice = createSlice({
 	name: 'viewSetting',
 	initialState: VIEW_SETTING_INITIAL_STATE,
 	reducers: {
-		setViewSetting(state, action) {
+		setViewSetting(state) {
 			state.viewSetting = !state.viewSetting;
 		},
 	},

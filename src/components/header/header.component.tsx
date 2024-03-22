@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../store/store';
 import { Link } from 'react-router-dom';
 import { selectViewSetting } from '../../store/view-setting/view-setting.selector';
 import { setViewSetting } from '../../store/view-setting/view-setting.slice';
@@ -7,8 +8,10 @@ import { setViewSetting } from '../../store/view-setting/view-setting.slice';
 import './header.styles.scss';
 import '../../assets/logo-globe.svg';
 
+
 const Header = () => {
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const handleDisplaySetting = () => {
 		dispatch(setViewSetting());
 	};

@@ -7,3 +7,5 @@ export const rootReducer = combineReducers({
 	country: countryArticlesReducer,
 	viewSetting: viewSettingReducer,
 });
+
+export type RootState = ReturnType<typeof rootReducer>

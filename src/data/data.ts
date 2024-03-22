@@ -35,14 +35,20 @@ export const countriesCodeFromNewsApiUpperCase = countriesCodeFromNewsApi.map(
 	(country) => country.toLocaleUpperCase()
 );
 
-const fetchCountryName = async (code) => {
+export type CountryName = {
+    name: {
+        common: string;
+    };
+};
+
+const fetchCountryName = async (code: string): Promise<string | null> => {
 	try {
 		const response = await fetch(
 			`https://restcountries.com/v3.1/alpha/${code}`
 		);
-		const data = await response.json();
+		const data: CountryName[] = await response.json();
+        return data[0].name.common;
 
-		return data[0].name.common;
 	} catch (error) {
 		console.log(error);
 		return null;
