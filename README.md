@@ -13,7 +13,7 @@ Newsify is the project presenting news from around the world from a public API G
 
 ## Technologies Used
 
--   Front-end: HTML, SCSS, JavaScript, React, Redux, Redux Toolkit, Redux-Logger, Redux-Thunk
+-   Front-end: HTML, SCSS, TypeScript, React, Redux, Redux Toolkit, Redux-Logger, Redux-Thunk
 
 ## What I have learnt
 
