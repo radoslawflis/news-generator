@@ -1,8 +1,15 @@
 import ReactDom from 'react-dom';
 
 import './pop-up.styles.scss';
+import { Article } from '../../store/country/country.slice';
 
-const PopUp = ({ open, onClose, article }) => {
+type PopUpProps = {
+	open: boolean;
+	onClose: () => void;
+	article: Article;
+}
+
+const PopUp = ({ open, onClose, article }: PopUpProps) => {
 	if (!open) return null;
 	const { source, content, url, title } = article;
 
@@ -26,7 +33,7 @@ const PopUp = ({ open, onClose, article }) => {
 				</div>
 			</div>
 		</>,
-		document.getElementById('portal')
+		document.getElementById('portal') as HTMLElement
 	);
 };
 

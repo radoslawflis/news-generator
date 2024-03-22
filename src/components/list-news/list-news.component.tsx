@@ -2,12 +2,17 @@ import { useState } from 'react';
 import PopUp from '../pop-up/pop-up.component';
 
 import './list-news.styles.scss';
+import { Article } from '../../store/country/country.slice';
 
-const ListNews = ({ article }) => {
+type ListNewsProps = {
+	article: Article
+}
+
+const ListNews = ({ article }: ListNewsProps) => {
 	const [openPopUp, setOpenPopUp] = useState(false);
 	const { title, source, publishedAt } = article;
 
-	const getDateDay = (date) => {
+	const getDateDay = (date: string) => {
 		const publishedDate = date.split('T')[0];
 		const publishedTime = date.split('T')[1].split('Z')[0];
 		return { publishedDate, publishedTime };

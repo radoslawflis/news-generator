@@ -1,13 +1,16 @@
 // import { compose, createStore, applyMiddleware } from 'redux';
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware, Middleware, Dispatch, AnyAction} from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
 import logger from 'redux-logger';
 
 // // root-reducer (one big reducer)
 import { rootReducer } from './root-reducer';
 
-const middleWares = [process.env.NODE_ENV !== 'production' && logger].filter(
-	Boolean
-);
+// const middleWares = [process.env.NODE_ENV !== 'production' && logger].filter(
+// 	Boolean
+// );
+const middleWares = [process.env.NODE_ENV !== 'production' ? logger : null]
+	.filter((middleware => middleware !== null)) as Middleware<{}, any, Dispatch<AnyAction>>[];
 
 // const composedEnhancer =
 // 	(process.env.NODE_ENV !== 'production' &&
@@ -22,3 +25,6 @@ export const store = configureStore({
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({}).concat(middleWares),
 });
+
+export type AppDispatch = typeof store.dispatch
+export const useAppDispatch: () => AppDispatch = useDispatch

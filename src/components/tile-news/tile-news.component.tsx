@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import PopUp from '../pop-up/pop-up.component';
 import './tile-news.styles.scss';
+import { Article } from '../../store/country/country.slice';
 
-const TileNews = ({ article }) => {
+export type ArticleProps = {
+	article: Article
+}
+
+const TileNews = ({ article }: ArticleProps ) => {
 	const [openPopUp, setOpenPopUp] = useState(false);
 	const [imageError, setImageError] = useState(false);
 	const { title, source, publishedAt, image } = article;
@@ -11,7 +16,7 @@ const TileNews = ({ article }) => {
 		setImageError(true);
 	};
 
-	const getDateDay = (date) => {
+	const getDateDay = (date: string) => {
 		const publishedDate = date.split('T')[0];
 		const publishedTime = date.split('T')[1].split('Z')[0];
 		return { publishedDate, publishedTime };

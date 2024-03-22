@@ -1,12 +1,13 @@
 import { createSelector } from 'reselect';
+import { RootState } from '../root-reducer';
 
-export const selectCountryArticlesReducer = (state) =>
+export const selectCountryArticlesReducer = (state: RootState) =>
 	state.country.currentCountryArticles;
 
-export const selectCountryArticlesIsLoading = (state) =>
+export const selectCountryArticlesIsLoading = (state: RootState) =>
 	state.country.isLoading;
 
-export const selectCountryArticlesError = (state) => state.country.error;
+export const selectCountryArticlesError = (state: RootState) => state.country.error;
 
 export const selectTotalArticles = createSelector(
 	[selectCountryArticlesReducer],

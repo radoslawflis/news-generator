@@ -10,18 +10,27 @@ import {
 } from '../../data/data';
 
 import { fetchArticlesByCode } from '../../store/country/country.slice';
+import { useAppDispatch } from '../../store/store';
 
 import './sidebar.styles.scss';
+import { CountryName } from '../../data/data';
+
+type CountriesNamesType = (CountryName | null)[] 
+
+
 
 const Sidebar = () => {
-  const dispatch = useDispatch();
-  const [countriesNames, setCountriesNames] = useState('');
-
+  const dispatch = useAppDispatch();
+  // const dispatch = useDispatch();
+  const [countriesNames, setCountriesNames] = useState<string[]>([]);
+  
   useEffect(() => {
     const fetchCountriesNames = async () => {
       try {
         const names = await getCountriesNames();
-        setCountriesNames(names);
+        if(names) {
+          setCountriesNames(names as string[]);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -32,7 +41,7 @@ const Sidebar = () => {
   const countriesCodeUpperCase = countriesCodeFromNewsApiUpperCase;
   const countriesCodeLowerCase = countriesCodeFromNewsApi;
 
-  const handleFetchingArticles = (code) => {
+  const handleFetchingArticles = (code: string) => {
     dispatch(fetchArticlesByCode(code));
   };
 
@@ -43,11 +52,11 @@ const Sidebar = () => {
         <hr />
         {countriesNames &&
           countriesNames.map((country, index) => (
-            <li key={country}>
+            <li key={index}>
               <Link to={`/country/${country}`}>
                 <div className='flag-container'>
                   <img
-                    key={country}
+                    key={index}
                     // src={`https://www.countryflagicons.com/SHINY/64/${countriesCodeUpperCase[index]}.png`}
                     src={`https://flagsapi.com/${countriesCodeUpperCase[index]}/shiny/64.png`}
                   ></img>

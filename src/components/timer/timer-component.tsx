@@ -6,7 +6,8 @@ const Timer = () => {
 	const [time, setTime] = useState(new Date());
 
 	useEffect(() => {
-		setInterval(() => setTime(new Date()), 1000);
+		const intervalId = setInterval(() => setTime(new Date()), 1000);
+		return () => clearInterval(intervalId);
 	}, []);
 
 	return <h3>Current Time: {time.toLocaleTimeString()}</h3>;
